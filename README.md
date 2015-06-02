@@ -17,9 +17,11 @@ bower install ion-google-place
 Or clone this repository.
 
 For the geolocation service to work, you'll need to have Google Maps javascript API somewhere in your HEAD tag:
-`<script src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>`
+```
+<script src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+```
 
-You'll need to add `ion-google-place` as a dependency on your Ionic app:
+Finally, you'll need to add `ion-google-place` as a dependency on your Ionic app:
 ```javascript
 angular.module('myApp', [
   'ionic',
