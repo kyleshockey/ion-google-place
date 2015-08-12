@@ -54,6 +54,21 @@ If you want an angularjs version of their fillInAddress() function here is a goo
 $scope.placeSearch = "";
 $scope.autocomplete = "";
 
+//important to structure like this. $scope.location = "" wont work.
+$scope.data={"location":{}};
+
+$scope.googleChange = function(){
+  $scope.fillInAddress($scope.data.location);
+};
+  
+$scope.newCustomerData = {
+    street_addy : "", //addy 1
+    street_more : "", //addy 2
+    city: "", //city
+    thestate: "", //state
+    postal_code: "" //zipcode
+  }; 
+  
 $scope.componentForm = {
   street_number: 'short_name',
   route: 'long_name',
@@ -76,7 +91,22 @@ $scope.fillInAddress = function(place) {
     var addressType = place.address_components[i].types[0];
     if ($scope.componentForm[addressType]) {
       var val = place.address_components[i][$scope.componentForm[addressType]];
-      document.getElementById(addressType).value = val;
+      console.debug(addressType);
+      if(addressType == "street_number"){
+        $scope.newCustomerData.street_addy = val;
+      }
+      if(addressType == "route"){
+        $scope.newCustomerData.street_more = val;
+      }
+      if(addressType == "locality"){
+        $scope.newCustomerData.city = val;
+      }
+      if(addressType == "administrative_area_level_1"){
+        $scope.newCustomerData.thestate = val;
+      }
+      if(addressType == "postal_code"){
+        $scope.newCustomerData.postal_code = val;
+      }
     }
   }
 };
